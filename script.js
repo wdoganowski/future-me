@@ -58,14 +58,14 @@
   // ---------- Theme ----------
   function initTheme() {
     const saved = localStorage.getItem(THEME_KEY);
-    if (saved === 'dark' || saved === 'light') {
-      document.documentElement.setAttribute('data-theme', saved);
-    }
+    const theme = (saved === 'dark' || saved === 'light')
+      ? saved
+      : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
   }
 
   function toggleTheme() {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const current = document.documentElement.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
+    const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem(THEME_KEY, next);
