@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Future Me — Letters to Your Future Self</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">⏳</span>
+      <span class="brand-name">Future Me</span>
+    </div>
+    <button id="themeToggle" class="theme-toggle" title="Toggle dark / light mode" aria-label="Toggle dark / light mode">
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+    </button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Write a letter your future self will thank you for.</h1>
+      <p class="subtitle">Seal a message today. It unlocks on the date you choose — not a moment sooner.</p>
+      <blockquote id="quote" class="quote"></blockquote>
+    </section>
+
+    <section class="card form-card">
+      <h2>New Time Capsule</h2>
+      <form id="letterForm" novalidate>
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Wojciech" required maxlength="60" />
+        </div>
+
+        <div class="field">
+          <label for="message">Message to your future self</label>
+          <textarea id="message" name="message" rows="5" placeholder="Dear future me..." required maxlength="4000"></textarea>
+          <span class="char-count"><span id="charCount">0</span> / 4000</span>
+        </div>
+
+        <div class="field">
+          <label for="unlockDate">Unlock date &amp; time</label>
+          <input type="datetime-local" id="unlockDate" name="unlockDate" required />
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span class="btn-label">Seal Message</span>
+          <span class="btn-icon">🔒</span>
+        </button>
+        <p id="formError" class="form-error" role="alert"></p>
+      </form>
+    </section>
+
+    <section class="dashboard">
+      <div class="dashboard-header">
+        <h2>Your Time Capsules</h2>
+        <span id="capsuleCount" class="badge">0</span>
+      </div>
+      <div id="emptyState" class="empty-state">
+        <p>No letters yet — write one above and it will appear here, counting down until it unlocks. ✨</p>
+      </div>
+      <div id="capsuleList" class="capsule-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Your letters are stored only in this browser (localStorage) — nothing leaves your device.</p>
+  </footer>
+
+  <!-- Reveal modal -->
+  <div id="revealOverlay" class="reveal-overlay" hidden>
+    <div class="reveal-modal" role="dialog" aria-modal="true" aria-labelledby="revealTitle">
+      <button id="revealClose" class="reveal-close" aria-label="Close">✕</button>
+      <div class="reveal-seal">💌</div>
+      <h3 id="revealTitle">A letter has arrived</h3>
+      <p class="reveal-meta" id="revealMeta"></p>
+      <div class="reveal-body" id="revealBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
