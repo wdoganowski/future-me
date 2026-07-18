@@ -39,7 +39,6 @@
     els.revealMeta = qs('revealMeta');
     els.revealBody = qs('revealBody');
 
-    initTheme();
     initQuote();
     initMinDate();
 
@@ -56,14 +55,8 @@
   }
 
   // ---------- Theme ----------
-  function initTheme() {
-    const saved = localStorage.getItem(THEME_KEY);
-    const theme = (saved === 'dark' || saved === 'light')
-      ? saved
-      : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-  }
-
+  // Initial data-theme is set by the blocking inline script in <head>,
+  // before first paint, to avoid a flash of the wrong theme.
   function toggleTheme() {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
